@@ -28,25 +28,22 @@ def grid_cell_firing_pattern(position, initial_position, wavelength, direction):
     
     return firing_pattern
 
-# Simulation parameters
-wavelength = 20  # Example wavelength
-direction = 0  # Movement direction in radians
-initial_position = (0, 0)
+def plot_gridcell(env_size, wavelength=20, direction=0, initial_position=(0, 0)):
 
-# Create a grid of positions
-x_range = np.linspace(-20, 20, 100)
-y_range = np.linspace(-20, 20, 100)
-firing_patterns = np.zeros((len(x_range), len(y_range)))
+    # Create a grid of positions
+    x_range = np.linspace(0, env_size, env_size * 10)
+    y_range = np.linspace(0, env_size, env_size * 10)
+    firing_patterns = np.zeros((len(x_range), len(y_range)))
 
-for i, x in enumerate(x_range):
-    for j, y in enumerate(y_range):
-        firing_patterns[i, j] = grid_cell_firing_pattern((x, y), initial_position, wavelength, direction)
+    for i, x in enumerate(x_range):
+        for j, y in enumerate(y_range):
+            firing_patterns[i, j] = grid_cell_firing_pattern((x, y), initial_position, wavelength, direction)
 
-# Plot the firing pattern
-plt.figure(figsize=(8, 8))
-plt.contourf(x_range, y_range, firing_patterns.T, cmap='viridis')
-plt.colorbar(label='Firing Rate')
-plt.title('Grid Cell Firing Pattern')
-plt.xlabel('X Position')
-plt.ylabel('Y Position')
-plt.show()
+    # Plot the firing pattern
+    plt.figure(figsize=(8, 8))
+    plt.contourf(x_range, y_range, firing_patterns.T, cmap='viridis')
+    plt.colorbar(label='Firing Rate')
+    plt.title('Grid Cell Firing Pattern')
+    plt.xlabel('X Position')
+    plt.ylabel('Y Position')
+    plt.show()
