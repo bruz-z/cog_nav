@@ -47,3 +47,6 @@ def plot_gridcell(env_size, wavelength=20, direction=0, initial_position=(0, 0))
     plt.xlabel('X Position')
     plt.ylabel('Y Position')
     plt.show()
+
+
+# plot_gridcell(50, 20, 0, (0, 0))

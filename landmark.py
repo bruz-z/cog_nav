@@ -105,7 +105,7 @@ def reach_to_goal():
         ])
         navigate_to_destination(current_position, distance)
 
-plot_gridcell(ENV_SIZE, WAVELENGTH, DIRECTION, INITIAL_POSITION)
+# plot_gridcell(ENV_SIZE, WAVELENGTH, DIRECTION, INITIAL_POSITION)
 
 while True:
     rawImage = CLIENT.simGetImage(CAMERA_NAME, IMAGE_TYPE)
