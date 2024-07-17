@@ -43,7 +43,7 @@ def navigate_to_goal(goal):
     if distance < 5:
         brake = 1
     CLIENT.setCarControls(airsim.CarControls(throttle, steering, brake))
-
+  
 def next_goal():
     cylinders = CLIENT.simGetDetections(CAMERA_NAME, IMAGE_TYPE)
     if not cylinders:
@@ -97,7 +97,6 @@ def navigate_to_destination(current_position, distance):
 def reach_to_goal():
     while True:
         current_position = CLIENT.simGetVehiclePose().position
-        print(current_position)
         distance = np.linalg.norm([
             current_position.x_val - DESTINATION_GOAL[0],
             current_position.y_val - DESTINATION_GOAL[1],
@@ -114,11 +113,8 @@ while True:
     png = cv2.imdecode(airsim.string_to_uint8_array(rawImage), cv2.IMREAD_UNCHANGED)
     current_position = CLIENT.simGetVehiclePose().position
     current_theta = np.arctan2(current_position.y_val - DESTINATION_GOAL[1], current_position.x_val - DESTINATION_GOAL[0])
-    start_time = time.time()
     cylinders = CLIENT.simGetDetections(CAMERA_NAME, IMAGE_TYPE)
-
-    imu_data = CLIENT.getImuData()
-    print(imu_data)
+  
     if cylinders:
         min_cylinder = None
         min_dis = float('inf')
